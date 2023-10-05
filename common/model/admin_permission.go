@@ -7,8 +7,8 @@ import (
 
 var AdminPermission = &adminPermissionModel{
 	baseModel: createModel(
-		"admin-slave",
-		"admin-master",
+		"main-slave",
+		"main-master",
 		"main-slave",
 		"main-master",
 		false,

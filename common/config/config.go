@@ -13,6 +13,7 @@ type App struct {
 	Project   string       `toml:"project" json:"project" yaml:"project"`
 	Env       string       `toml:"env" json:"env" yaml:"env"`
 	Debug     bool         `toml:"debug" json:"debug" yaml:"debug"`
+	Secret    string       `toml:"secret" json:"secret" yaml:"secret"`
 	HttpCode  string       `toml:"http_code" json:"http_code" yaml:"httpCode"`
 	TcpCode   string       `toml:"tcp_code" json:"tcp_code" yaml:"tcpCode"`
 	HttpCoder coder.ICoder `toml:"-" json:"-"`

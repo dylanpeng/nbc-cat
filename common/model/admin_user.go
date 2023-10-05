@@ -8,8 +8,8 @@ import (
 
 var AdminUser = &adminUserModel{
 	baseModel: createModel(
-		"admin-slave",
-		"admin-master",
+		"main-slave",
+		"main-master",
 		"main-slave",
 		"main-master",
 		false,
@@ -22,15 +22,14 @@ type adminUserModel struct {
 	*baseModel
 }
 
-func (m *adminUserModel) GetByEmail(email string) (item *entity.DataAdminUser, err error) {
+func (m *adminUserModel) GetByName(name string) (item *entity.DataAdminUser, err error) {
 	db, err := m.DB.getDB(false)
-
 	if err != nil {
 		return
 	}
 
 	oItem := &entity.DataAdminUser{}
-	err = db.Where("`email`=?", email).First(oItem).Error
+	err = db.Where("`name`=?", name).First(oItem).Error
 
 	if err == gorm.ErrRecordNotFound {
 		err = nil

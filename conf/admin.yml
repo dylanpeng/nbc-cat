@@ -4,6 +4,7 @@ config:
     project: cat
     env: dev
     debug: true
+    secret: nbc-cat-secret
 
   log:
     file_path: ./logs

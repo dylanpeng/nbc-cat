@@ -29,6 +29,7 @@ const (
 const (
 	CodeMenuParentNotExist = iota + 1001
 	CodeMenuPermsInUse
+	CodeUserPasswordErr
 )
 
 var Desces = map[int]string{
@@ -56,4 +57,5 @@ var Desces = map[int]string{
 
 	CodeMenuParentNotExist: "parent menu node not exist",
 	CodeMenuPermsInUse:     "menu perms already in use",
+	CodeUserPasswordErr:    "name or password error",
 }

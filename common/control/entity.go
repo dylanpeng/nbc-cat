@@ -5,6 +5,8 @@ type Response struct {
 	Code int32 `protobuf:"varint,1,opt,name=code,proto3" json:"code" form:"code"`
 	// response message
 	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message" form:"message"`
+
+	Data interface{} `json:"data"`
 }
 
 type HealthRsp struct {
