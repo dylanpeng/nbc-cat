@@ -1,8 +1,9 @@
 package cmd
 
 import (
-	"cat/internal/app/admin/config"
-	"cat/internal/common"
+	"cat/common"
+	"cat/internal/admin/config"
+	"cat/internal/admin/router"
 	"encoding/json"
 	"fmt"
 	"github.com/judwhite/go-svc"
@@ -51,6 +52,9 @@ func (app *Application) Init(env svc.Environment) error {
 		panic(err)
 	}
 
+	// 初始化redis
+	common.InitCache()
+
 	// 初始化mysql
 	if err := common.InitDB(conf.DB); err != nil {
 		fmt.Printf("mysql init err: %s", err)
@@ -64,9 +68,12 @@ func (app *Application) Init(env svc.Environment) error {
 }
 
 func (app *Application) Start() error {
-	// do start
+	// http服务
+	common.InitHttpServer(router.Router)
+	httpConf := config.GetConfig().Http
+
 	fmt.Println("start")
-	common.Logger.Infof("admin start")
+	common.Logger.Infof("admin start at %s:%d", httpConf.Host, httpConf.Port)
 	return nil
 }
 

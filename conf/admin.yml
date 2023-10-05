@@ -1,32 +1,47 @@
-log:
-  file_path: ./logs
-  level: debug
-  time_format: 2006-01-02 15:04:05.000
-  max_age_day: 7
+config:
+  app:
+    name: cat-admin
+    project: cat
+    env: dev
+    debug: true
 
-db:
-  main-master:
-    host: localhost
-    port: 3306
-    user: user
-    password: password
-    charset: utf8mb4
-    database: cat
-    timeout: 3
-    max_idle_conns: 20
-    max_conn_ttl: 300
-  main-slave:
-    host: localhost
-    port: 3306
-    user: user
-    password: password
-    charset: utf8mb4
-    database: cat
-    timeout: 3
-    max_idle_conns: 20
-    max_conn_ttl: 300
+  log:
+    file_path: ./logs
+    level: debug
+    time_format: 2006-01-02 15:04:05.000
+    max_age_day: 7
 
+  db:
+    main-master:
+      host: localhost
+      port: 3306
+      user: user
+      password: password
+      charset: utf8mb4
+      database: cat
+      timeout: 3
+      max_idle_conns: 20
+      max_conn_ttl: 300
+    main-slave:
+      host: localhost
+      port: 3306
+      user: user
+      password: password
+      charset: utf8mb4
+      database: cat
+      timeout: 3
+      max_idle_conns: 20
+      max_conn_ttl: 300
 
+  http:
+    host: 0.0.0.0
+    port: 1080
+    gzip: true
+    pprof: true
+    tls:
+      enable: false
+      cert_path:
+      key_path:
 
 
 
