@@ -4,13 +4,15 @@
 
 package entity
 
+import "fmt"
+
 const TableNameDataAdminRole = "data_admin_role"
 
 // DataAdminRole mapped from table <data_admin_role>
 type DataAdminRole struct {
 	ID         int64  `gorm:"column:id;primaryKey;autoIncrement:true;comment:主键id" json:"id"` // 主键id
 	Name       string `gorm:"column:name;not null;comment:角色说明" json:"name"`                  // 角色说明
-	Perms      string `gorm:"column:perms;not null;comment:角色权限ID列表" json:"perms"`            // 角色权限ID列表
+	Perms      Int64s `gorm:"column:perms;not null;comment:角色权限ID列表" json:"perms"`            // 角色权限ID列表
 	CreateTime int64  `gorm:"column:create_time;not null;comment:创建时间戳" json:"create_time"`   // 创建时间戳
 	UpdateTime int64  `gorm:"column:update_time;not null;comment:修改时间戳" json:"update_time"`   // 修改时间戳
 }
@@ -18,4 +20,16 @@ type DataAdminRole struct {
 // TableName DataAdminRole's table name
 func (*DataAdminRole) TableName() string {
 	return TableNameDataAdminRole
+}
+
+func (e *DataAdminRole) PrimaryPairs() []interface{} {
+	return []interface{}{"id", e.ID}
+}
+
+func (e *DataAdminRole) PrimarySeted() bool {
+	return e.ID > 0
+}
+
+func (e *DataAdminRole) String() string {
+	return fmt.Sprintf("%+v", *e)
 }

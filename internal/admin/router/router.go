@@ -19,4 +19,5 @@ func (r *router) RegHttpHandler(app *gin.Engine) {
 	app.Any("/health", ctrl.Health)
 	app.Use(middleware.CheckEncoding)
 	app.Use(middleware.CrossDomain)
+
 }

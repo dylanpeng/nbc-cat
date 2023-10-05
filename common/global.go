@@ -7,6 +7,7 @@ import (
 	"github.com/dylanpeng/golib/http"
 	"github.com/dylanpeng/golib/logger"
 	"github.com/dylanpeng/golib/redis"
+	oRedis "github.com/redis/go-redis/v9"
 	oGorm "gorm.io/gorm"
 )
 
@@ -36,6 +37,10 @@ func InitDB(configs map[string]*gorm.Config) (err error) {
 	return nil
 }
 
+func GetDB(name string) (*oGorm.DB, error) {
+	return dbPool.Get(name)
+}
+
 func InitCache() {
 	confs := config.GetConfig().Cache
 	cachePool = redis.NewPool()
@@ -45,8 +50,8 @@ func InitCache() {
 	}
 }
 
-func GetDB(name string) (*oGorm.DB, error) {
-	return dbPool.Get(name)
+func GetCache(name string) (*oRedis.Client, error) {
+	return cachePool.Get(name)
 }
 
 func InitHttpServer(router http.Router) {

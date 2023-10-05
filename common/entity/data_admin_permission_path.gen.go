@@ -4,6 +4,8 @@
 
 package entity
 
+import "fmt"
+
 const TableNameDataAdminPermissionPath = "data_admin_permission_path"
 
 // DataAdminPermissionPath mapped from table <data_admin_permission_path>
@@ -18,4 +20,16 @@ type DataAdminPermissionPath struct {
 // TableName DataAdminPermissionPath's table name
 func (*DataAdminPermissionPath) TableName() string {
 	return TableNameDataAdminPermissionPath
+}
+
+func (e *DataAdminPermissionPath) PrimaryPairs() []interface{} {
+	return []interface{}{"id", e.ID}
+}
+
+func (e *DataAdminPermissionPath) PrimarySeted() bool {
+	return e.ID > 0
+}
+
+func (e *DataAdminPermissionPath) String() string {
+	return fmt.Sprintf("%+v", *e)
 }
