@@ -2,8 +2,9 @@ package router
 
 import (
 	ctrl "cat/common/control"
-	"cat/common/middleware"
-	"cat/internal/admin/login/control"
+	commonMiddleware "cat/common/middleware"
+	"cat/internal/admin/logic/control"
+	"cat/internal/admin/logic/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,20 +19,20 @@ func (r *router) GetIdentifier(ctx *gin.Context) string {
 
 func (r *router) RegHttpHandler(app *gin.Engine) {
 	app.Any("/health", ctrl.Health)
-	app.Use(middleware.CheckEncoding)
-	app.Use(middleware.CrossDomain)
+	app.Use(commonMiddleware.CheckEncoding)
+	app.Use(commonMiddleware.CrossDomain)
 
 	manageGroup := app.Group("/manage")
 	{
 		manageGroup.POST("/login", control.AdminUser.Login)
 	}
 
-	manageUserGroup := app.Group("/manage/user")
+	userGroup := app.Group("/manage/user", middleware.AdminAuth, middleware.PermissionCheck)
 	{
-		//manageUserGroup.GET("/list", control.AdminPerm.Tree)
-		manageUserGroup.POST("/add", control.AdminUser.Add)
-		//manageUserGroup.GET("/edit", control.AdminUser.Logout)
-		//manageUserGroup.GET("/edit", control.AdminUser.Logout)
+		//userGroup.GET("/list", control.AdminPerm.Tree)
+		userGroup.POST("/add", control.AdminUser.Add)
+		//userGroup.GET("/edit", control.AdminUser.Logout)
+		//userGroup.GET("/edit", control.AdminUser.Logout)
 	}
 
 }

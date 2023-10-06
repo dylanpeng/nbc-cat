@@ -3,7 +3,7 @@ package control
 import (
 	"cat/common/consts"
 	ctrl "cat/common/control"
-	"cat/internal/admin/login/service"
+	"cat/internal/admin/logic/service"
 	"cat/internal/admin/types"
 	"github.com/gin-gonic/gin"
 )
